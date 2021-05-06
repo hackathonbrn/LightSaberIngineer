@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.os.Process;
+import android.widget.TextView;
 
 public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecycleEvents
 {
@@ -40,7 +41,6 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
 
         mUnityPlayer = new UnityPlayer(this, this);
         setContentView(mUnityPlayer);
-
         mUnityPlayer.requestFocus();
         UnityPlayer.UnitySendMessage("Cube", "APP","");
     }
