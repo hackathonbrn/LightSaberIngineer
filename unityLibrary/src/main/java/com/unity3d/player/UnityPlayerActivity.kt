@@ -6,10 +6,11 @@ import android.content.ComponentCallbacks2
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.Window
-import com.unity3d.player.UnityPlayer
+import android.widget.TextView
 
 class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     protected var mUnityPlayer // don't change the name of this variable; referenced from native code
@@ -37,7 +38,14 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
         mUnityPlayer = UnityPlayer(this, this)
         setContentView(mUnityPlayer)
         mUnityPlayer!!.requestFocus()
-
+        mUnityPlayer?.addView(TextView(this).apply {
+            text = "asdfqawef"
+            gravity = Gravity.BOTTOM and Gravity.CENTER
+            setOnClickListener {
+                finish()
+            }
+        }
+        )
         UnityPlayer.UnitySendMessage("Cube", "APP", "")
     }
 
