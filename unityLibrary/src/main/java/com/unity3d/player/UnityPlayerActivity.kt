@@ -42,7 +42,8 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
             text = "asdfqawef"
             gravity = Gravity.BOTTOM and Gravity.CENTER
             setOnClickListener {
-                finish()
+//                startActivity(Intent(this@UnityPlayerActivity,MainActivity::class.java))
+                onBackPressed()
             }
         }
         )
