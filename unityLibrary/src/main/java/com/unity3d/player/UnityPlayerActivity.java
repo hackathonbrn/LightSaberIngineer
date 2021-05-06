@@ -40,7 +40,9 @@ public class UnityPlayerActivity extends Activity implements IUnityPlayerLifecyc
 
         mUnityPlayer = new UnityPlayer(this, this);
         setContentView(mUnityPlayer);
+
         mUnityPlayer.requestFocus();
+        UnityPlayer.UnitySendMessage("Cube", "APP","");
     }
 
     // When Unity player unloaded move task to background
