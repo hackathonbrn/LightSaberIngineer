@@ -1,4 +1,4 @@
-package com.example.myapplication.components
+package com.example.myapplication.schemeView
 
 import android.content.Context
 import android.util.AttributeSet
@@ -12,7 +12,7 @@ class SimpleSchemeView(
     context,
     attributeSet
 ) {
-    lateinit var binding: SchemeSimpleViewBinding
+    var binding: SchemeSimpleViewBinding
 
     init {
         val root = inflate(context, R.layout.scheme_simple_view, this)

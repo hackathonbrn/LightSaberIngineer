@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.myapplication.ui.MainFragment"
+        android:name="com.example.myapplication.ui.mainFragment.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.example.myapplication.ui.ItemFragment.ItemFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" >
+        <argument
+            android:name="nestedType"
+            app:argType="com.example.myapplication.componentsView.NestType" />
+    </fragment>
 </navigation>

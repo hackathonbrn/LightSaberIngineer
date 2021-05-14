@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.mainFragment.MainFragment">
 
-    <com.example.myapplication.components.SimpleSchemeView
+    <com.example.myapplication.schemeView.SimpleSchemeView
+        android:id="@+id/simple_scheme_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Hello" />

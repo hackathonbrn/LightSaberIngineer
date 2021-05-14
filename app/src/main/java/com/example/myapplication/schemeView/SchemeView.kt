@@ -1,9 +1,8 @@
-package com.example.myapplication.components
+package com.example.myapplication.schemeView
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.example.myapplication.nest.Nest
 
 abstract class SchemeView(
     context: Context,
@@ -11,10 +10,4 @@ abstract class SchemeView(
 ) : FrameLayout(
     context,
     attributeSet
-) {
-
-//    abstract val nests : List<Nest>
-
-//    abstract fun initNests()
-
-}
+)
