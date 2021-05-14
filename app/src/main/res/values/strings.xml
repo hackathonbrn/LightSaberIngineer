@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="game_view_content_description">Game view</string>
+    <array name="Figures">
+        <item>Rectangle</item>
+        <item>Oval</item>
+        <item>Triangle</item>
+    </array>
 </resources>
