@@ -9,6 +9,7 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
     <application
+        android:name=".LaserApplication"
         android:allowBackup="true"
         android:extractNativeLibs="true"
         android:icon="@mipmap/ic_launcher"
