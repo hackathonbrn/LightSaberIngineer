@@ -6,4 +6,8 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/delete_forever_24"
         android:title="@string/clean"/>
+    <item android:id="@+id/play"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_baseline_play_circle_24"
+        android:title="@string/play"/>
 </menu>
