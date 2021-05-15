@@ -21,6 +21,7 @@ import com.example.myapplication.model.electrocomponents.LaserSaber
 import com.example.myapplication.saberUtils.SaberValidator
 import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
+import com.unity3d.player.COMMAND_KEY
 import com.unity3d.player.UnityPlayerActivity
 
 class MainFragment : Fragment() {
@@ -150,7 +151,7 @@ class MainFragment : Fragment() {
             }
             R.id.play -> {
                 if (validateLaserSaber())
-                    toUnity()
+                    toUnity("")
             }
         }
         return super.onOptionsItemSelected(item)
@@ -183,12 +184,12 @@ class MainFragment : Fragment() {
         return false
     }
 
-    fun toUnity() {
+    fun toUnity(saberConfig : String?) {
         val intent = Intent(
             requireContext(),
             UnityPlayerActivity::class.java
         )
-//        intent.
+        intent.putExtra(COMMAND_KEY,saberConfig)
         requireActivity().startActivity(intent)
     }
 }

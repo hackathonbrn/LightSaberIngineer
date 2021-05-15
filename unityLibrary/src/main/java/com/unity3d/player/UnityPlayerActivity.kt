@@ -5,9 +5,11 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.*
 import android.widget.Button
+
+
+val COMMAND_KEY = "commandKey"
 
 class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     protected var mUnityPlayer // don't change the name of this variable; referenced from native code
@@ -31,17 +33,27 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
         val cmdLine = updateUnityCommandLineArguments(intent?.getStringExtra("unity") ?: "")
         intent.putExtra("unity", cmdLine)
         mUnityPlayer = UnityPlayer(this, this)
+
+        //TODO castomize button back
         mUnityPlayer!!.addView(Button(baseContext).apply {
             text = "Назад"
             setOnClickListener {
                 finish()
             }
             gravity = Gravity.START
-            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
             width = 200
         })
         setContentView(mUnityPlayer)
         mUnityPlayer!!.requestFocus()
+
+        val command: String? = intent?.getStringExtra(COMMAND_KEY)
+        command?.let {
+            UnityPlayer.UnitySendMessage("LobbyManager", "SetSwordParameters", command)
+        }
     }
 
     // When Unity player unloaded move task to background
@@ -53,6 +65,7 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     override fun onUnityPlayerQuitted() {
 
     }
+
     override fun onNewIntent(intent: Intent) {
         // To support deep linking, we need to make sure that the client can get access to
         // the last sent intent. The clients access this through a JNI api that allows them
