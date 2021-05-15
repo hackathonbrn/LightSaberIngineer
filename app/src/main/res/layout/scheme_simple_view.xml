@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,104 +10,142 @@
         android:layout_height="match_parent">
 
         <View
-            android:id="@+id/top_wire"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            style="@style/BackgroundNorm"
-            app:layout_constraintBottom_toBottomOf="@id/battery"
-            app:layout_constraintEnd_toStartOf="@id/right_wire"
-            app:layout_constraintStart_toEndOf="@id/battery"
-            app:layout_constraintTop_toTopOf="@id/battery" />
-
-        <View
             android:id="@+id/top_left_wire"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toTopOf="@+id/battery"
-            app:layout_constraintBottom_toBottomOf="@+id/battery"
-            app:layout_constraintStart_toStartOf="@+id/left_wire"
-            app:layout_constraintEnd_toStartOf="@+id/battery" />
+            android:layout_height="6dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/wire_al_hor"
+            app:layout_constraintEnd_toStartOf="@+id/right_wire"
+            app:layout_constraintStart_toStartOf="@+id/left_wire2"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
-            android:id="@+id/bottom_wire"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            style="@style/BackgroundNorm"
-            app:layout_constraintBottom_toBottomOf="@+id/light"
-            app:layout_constraintEnd_toStartOf="@id/right_wire"
-            app:layout_constraintStart_toEndOf="@+id/light"
-            app:layout_constraintTop_toTopOf="@+id/light" />
+            android:id="@+id/left_wire"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:background="@drawable/wire_al_vert"
+            app:layout_constraintBottom_toTopOf="@+id/battery"
+            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
+            app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
+
+        <View
+            android:id="@+id/cor_left_top"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="270"
+            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
+            app:layout_constraintTop_toTopOf="@+id/left_wire" />
+
+        <View
+            android:id="@+id/left_wire2"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="34dp"
+            android:background="@drawable/wire_al_vert"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_left_wire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/battery" />
+
+        <View
+            android:id="@+id/cor_left_bot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@id/left_wire2"
+            app:layout_constraintStart_toStartOf="@+id/left_wire2" />
 
         <View
             android:id="@+id/bottom_left_wire"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/left_wire"
-            app:layout_constraintBottom_toBottomOf="@+id/light"
-            app:layout_constraintTop_toTopOf="@+id/light"
-            app:layout_constraintEnd_toStartOf="@+id/light" />
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_hor"
+            android:layout_marginBottom="34dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/right_wire"
+            app:layout_constraintStart_toEndOf="@+id/left_wire2" />
 
         <View
-            android:id="@+id/left_wire"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            style="@style/BackgroundNorm"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_left_wire"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_left_wire" />
+            android:elevation="20dp"
+            android:id="@+id/cor_right_bot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_left_wire"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_left_wire" />
 
         <View
             android:id="@+id/right_wire"
-            android:layout_width="1dp"
+            android:layout_width="6dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="20dp"
-            style="@style/BackgroundNorm"
-            app:layout_constraintBottom_toTopOf="@id/bottom_wire"
+            android:background="@drawable/wire_al_vert"
+            android:layout_marginEnd="34dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_left_wire"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_wire" />
+            app:layout_constraintStart_toStartOf="@+id/light"
+            app:layout_constraintTop_toBottomOf="@+id/light" />
 
-        <ImageButton
-            android:id="@+id/battery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_baseline_battery_charging_full_24"
+        <View
+            android:id="@+id/right_wire2"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:background="@drawable/wire_al_vert"
+            android:layout_marginEnd="34dp"
+            app:layout_constraintBottom_toTopOf="@id/light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/light"
+            app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
+
+        <View
+            android:id="@+id/cor_right_top"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="0"
+            app:layout_constraintEnd_toEndOf="@+id/right_wire2"
+            app:layout_constraintTop_toTopOf="@+id/right_wire2" />
 
         <ImageButton
             android:id="@+id/light"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_light_mode_24"
-            app:layout_constraintBottom_toTopOf="@+id/lence"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/lence"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/battery"
+            android:src="@drawable/ic_baseline_battery_charging_full_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/plus_cleat_battery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="58dp"
+            android:layout_marginBottom="44dp"
             android:src="@drawable/outline_add_circle_24"
             app:layout_constraintBottom_toBottomOf="@+id/battery"
             app:layout_constraintEnd_toEndOf="@+id/battery"
-            app:layout_constraintStart_toEndOf="@+id/battery"
+            app:layout_constraintStart_toStartOf="@+id/battery"
             app:layout_constraintTop_toTopOf="@+id/battery" />
 
         <ImageView
-            android:layout_marginBottom="10dp"
             android:id="@+id/lence"
+            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/outline_search_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
