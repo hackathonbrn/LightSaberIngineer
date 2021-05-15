@@ -38,31 +38,33 @@ class MainFragment : Fragment() {
         binding.needBattery.text = getString(R.string.battery)
         binding.needEmitter.text = getString(R.string.emitter)
         binding.needLense.text = getString(R.string.lense)
+        setHasOptionsMenu(true)
+
         binding.simpleSchemeView.setOnBatteryClickListener {
-            setResultListener() { bundle ->
+            setResultListener { bundle ->
+                val batteryItem = (bundle.get(NestType.BATTERY.name) as BatteryItem)
                 viewModel.updateSaber {
                     it.copy(
-                        battery = (bundle.get(NestType.BATTERY.name) as BatteryItem).component as Battery
+                        battery = batteryItem.component as Battery
                     )
                 }
+                binding.simpleSchemeView.setImage(batteryItem.imageResource, NestType.BATTERY)
             }
-
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
             )
         }
-        setHasOptionsMenu(true)
 
         binding.simpleSchemeView.setOnLightClickListener {
-            setResultListener() { bundle ->
+            setResultListener { bundle ->
 
-                val ugo = (bundle.get(NestType.EMITTER.name) as LightItem)
+                val lightItem = (bundle.get(NestType.EMITTER.name) as LightItem)
                 viewModel.updateSaber {
                     it.copy(
-                        emitter = ugo.component as Emitter
+                        emitter = lightItem.component as Emitter
                     )
                 }
-                binding.simpleSchemeView.setImage(ugo.imageResource, NestType.EMITTER)
+                binding.simpleSchemeView.setImage(lightItem.imageResource, NestType.EMITTER)
             }
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
@@ -184,12 +186,12 @@ class MainFragment : Fragment() {
         return false
     }
 
-    fun toUnity(saberConfig : String?) {
+    fun toUnity(saberConfig: String?) {
         val intent = Intent(
             requireContext(),
             UnityPlayerActivity::class.java
         )
-        intent.putExtra(COMMAND_KEY,saberConfig)
+        intent.putExtra(COMMAND_KEY, saberConfig)
         requireActivity().startActivity(intent)
     }
 }

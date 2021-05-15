@@ -7,6 +7,8 @@ import com.example.myapplication.schemeerrors.ErrorScheme
 
 class MainViewModel : ViewModel() {
 
+
+
     var errorsLive : MutableLiveData<ErrorScheme?> = MutableLiveData(null)
 
     fun invokeError(error : ErrorScheme){
