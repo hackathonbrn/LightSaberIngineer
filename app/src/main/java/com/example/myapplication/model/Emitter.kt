@@ -1,6 +1,6 @@
 package com.example.myapplication.model
 
-class Emmiter(
+class Emitter(
     override val name: String
 ) : BaseComponent() {
 

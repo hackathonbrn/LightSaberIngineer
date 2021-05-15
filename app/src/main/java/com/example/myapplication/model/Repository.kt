@@ -21,15 +21,15 @@ class Repository {
     )
     val lights = listOf(
         LightItem(
-            Emmiter("E1220"),
+            Emitter("E1220"),
             R.drawable.qwer
         ),
         LightItem(
-            Battery("E12"),
+            Emitter("E12"),
             R.drawable.ic_baseline_light_mode_24
         ),
         LightItem(
-            Battery("E1"),
+            Emitter("E1"),
             R.drawable.outline_remove_circle_24
         )
     )
