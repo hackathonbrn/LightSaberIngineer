@@ -24,4 +24,5 @@ class MainViewModel : ViewModel() {
     fun updateSaber(updater: (saber: LaserSaber) -> LaserSaber) {
         saber.value = updater.invoke(saber.value!!)
     }
+
 }

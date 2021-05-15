@@ -77,10 +77,13 @@ class MainFragment : Fragment() {
                 AlertDialog.Builder(requireContext())
                     .setPositiveButton(
                         "Ok"
-                    ) { dialog, which -> }
+                    ) { dialog, which ->
+                        viewModel.errorResolved()
+                    }
                     .setNegativeButton(
                         "Справка"
                     ) { dialog, which ->
+                        viewModel.errorResolved()
                         toManual(it.MANUAL_URL)
                     }
                     .setTitle(it.title)
@@ -156,14 +159,16 @@ class MainFragment : Fragment() {
         val saber = viewModel.saber.value
         if (!SaberValidator.allComponentsOnPlace(saber))
             viewModel.invokeError(
-                ErrorScheme(
-                    "Ошибка сборки",
-                    "Вы забыли какой-то из элементов!",
-                    "здесь ссылка на справку"
-                )
-            )
-    }
+                ErrorScheme.BUILD
+            ) else {
 
+            if (!SaberValidator.hasEnergyToStart(saber!!)) {
+                viewModel.invokeError(
+                    ErrorScheme.LOW_BATTERY
+                )
+            }
+        }
+    }
 
     fun toUnity() {
         val intent = Intent(
