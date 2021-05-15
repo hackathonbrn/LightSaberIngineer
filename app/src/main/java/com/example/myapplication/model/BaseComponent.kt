@@ -2,9 +2,8 @@ package com.example.myapplication.model
 
 import Conductive
 import Connectable
-import java.io.Serializable
 
-abstract class BaseComponent : Serializable, Connectable, Conductive {
+abstract class BaseComponent : Connectable, Conductive {
     abstract val name : String
     override fun research(i: Int): Int {
         return type.id

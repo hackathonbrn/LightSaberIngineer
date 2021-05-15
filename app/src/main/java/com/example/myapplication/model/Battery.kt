@@ -2,11 +2,10 @@ package com.example.myapplication.model
 
 import com.example.myapplication.componentsView.NestType
 
-class Battery(
-    override val name: String
+data class Battery(
+    override val name: String,
+    val startingCurrent: Double = 0.0
 ) : BaseComponent() {
     val electricalCapacity = 0.0
-    val voltage = 0.0
-    val power = 0.0
     override val type: NestType = NestType.BATTERY
 }

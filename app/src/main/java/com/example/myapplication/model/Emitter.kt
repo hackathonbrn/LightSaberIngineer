@@ -1,10 +1,10 @@
 package com.example.myapplication.model
 import com.example.myapplication.componentsView.NestType
 
-class Emitter(
-    override val name: String
+data class Emitter(
+    override val name: String,
+    val voltage : Double = 0.0
 ) : BaseComponent() {
-    val voltage = 0.0
     val power = 0.0
     override val type: NestType = NestType.EMITTER
 }

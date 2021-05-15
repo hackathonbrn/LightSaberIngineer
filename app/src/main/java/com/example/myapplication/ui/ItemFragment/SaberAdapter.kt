@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.ComponentsInfo
 import com.example.myapplication.componentsView.NestType
+import com.google.android.material.card.MaterialCardView
 
 class SaberAdapter(
     private val values: List<ComponentsInfo>,
@@ -48,14 +49,16 @@ class SaberAdapter(
 
     inner class ViewHolderBattery(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
+        val cardView : MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
-            contentView.setText(componentsInfo.component.name)
+            //idView.setText((position+1).toString() + ".")
+            contentView.setText("Аккумулятор " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
-            imageView.setOnClickListener {
+            cardView.setOnClickListener {
                 function.invoke(
-                    bundleOf(componentsInfo.viewType.name to componentsInfo.component)
+                    bundleOf(componentsInfo.viewType.name to componentsInfo)
                 )
             }
         }
@@ -63,14 +66,16 @@ class SaberAdapter(
 
     inner class ViewHolderLight(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
+        val cardView : MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
-            contentView.setText(componentsInfo.component.name)
+            //idView.setText((position+1).toString() + ".")
+            contentView.setText("Излучатель " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
-            imageView.setOnClickListener {
+            cardView.setOnClickListener {
                 function.invoke(
-                    bundleOf(componentsInfo.viewType.name to componentsInfo.component)
+                    bundleOf(componentsInfo.viewType.name to componentsInfo)
                 )
             }
         }

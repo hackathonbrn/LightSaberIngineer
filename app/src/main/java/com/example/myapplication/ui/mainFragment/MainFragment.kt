@@ -1,9 +1,9 @@
 package com.example.myapplication.ui.mainFragment
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResultListener
@@ -11,12 +11,17 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.componentsView.BatteryItem
+import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.Battery
 import com.example.myapplication.model.Emitter
 import com.example.myapplication.model.LaserSaber
+import com.example.myapplication.saberUtils.SaberValidator
+import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
+import com.unity3d.player.UnityPlayerActivity
 
 class MainFragment : Fragment() {
 
@@ -36,7 +41,7 @@ class MainFragment : Fragment() {
             setResultListener() { bundle ->
                 viewModel.updateSaber {
                     it.copy(
-                        battery = (bundle.get(NestType.BATTERY.name) as Battery)
+                        battery = (bundle.get(NestType.BATTERY.name) as BatteryItem).component as Battery
                     )
                 }
             }
@@ -49,21 +54,63 @@ class MainFragment : Fragment() {
 
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener() { bundle ->
+
+                val ugo = (bundle.get(NestType.EMITTER.name) as LightItem)
                 viewModel.updateSaber {
                     it.copy(
-                        emitter = (bundle.get(NestType.EMITTER.name) as Emitter)
+                        emitter = ugo.component as Emitter
                     )
                 }
+                binding.simpleSchemeView.setImage(ugo.imageResource, NestType.EMITTER)
             }
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
             )
         }
-        initObserver()
+        initObservers()
         return binding.root
     }
 
-    private fun initObserver() {
+    private fun initObservers() {
+        initErrorObserver()
+        initComponentObserver()
+    }
+
+    private fun initErrorObserver() {
+        viewModel.errorsLive.observe(viewLifecycleOwner) {
+            if (it != null) {
+                createSupportDialog(it)
+            }
+        }
+    }
+
+    private fun createSupportDialog(it: ErrorScheme) {
+        AlertDialog.Builder(requireContext())
+            .setPositiveButton(
+                "Ok"
+            ) { dialog, which ->
+                viewModel.errorResolved()
+            }
+            .setNegativeButton(
+                "Справка"
+            ) { dialog, which ->
+                viewModel.errorResolved()
+                toManual(it.MANUAL_URL)
+            }
+            .setTitle(it.title)
+            .setMessage(it.description)
+            .create()
+            .show()
+    }
+
+    private fun toManual(manualUrl: String) {
+        findNavController()
+            .navigate(
+                MainFragmentDirections.actionMainFragmentToWebViewFragment(manualUrl)
+            )
+    }
+
+    private fun initComponentObserver() {
         viewModel.saber.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
 
@@ -97,15 +144,19 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.clean -> {
                 clear()
+            }
+            R.id.play -> {
+                if (validateLaserSaber())
+                    toUnity()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun clear(){
+    fun clear() {
         binding.needBattery.text = getString(R.string.battery)
         binding.needBattery.isChecked = false
         binding.needEmitter.text = getString(R.string.emitter)
@@ -115,5 +166,28 @@ class MainFragment : Fragment() {
         viewModel.updateSaber {
             LaserSaber(null, null, null)
         }
+    }
+
+    fun validateLaserSaber(): Boolean {
+        val saber = viewModel.saber.value
+        if (!SaberValidator.allComponentsOnPlace(saber))
+            viewModel.invokeError(
+                ErrorScheme.BUILD
+            ) else {
+            if (!SaberValidator.hasEnergyToStart(saber!!)) {
+                viewModel.invokeError(
+                    ErrorScheme.LOW_BATTERY
+                )
+            } else return true
+        }
+        return false
+    }
+
+    fun toUnity() {
+        val intent = Intent(
+            requireContext(),
+            UnityPlayerActivity::class.java
+        )
+        requireActivity().startActivity(intent)
     }
 }
