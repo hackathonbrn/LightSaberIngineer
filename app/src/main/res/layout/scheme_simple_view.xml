@@ -19,6 +19,15 @@
             app:layout_constraintTop_toTopOf="@id/battery" />
 
         <View
+            android:id="@+id/top_left_wire"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toTopOf="@+id/battery"
+            app:layout_constraintBottom_toBottomOf="@+id/battery"
+            app:layout_constraintStart_toStartOf="@+id/left_wire"
+            app:layout_constraintEnd_toStartOf="@+id/battery" />
+        <View
             android:id="@+id/bottom_wire"
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -29,14 +38,24 @@
             app:layout_constraintTop_toTopOf="@+id/light" />
 
         <View
+            android:id="@+id/bottom_left_wire"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/left_wire"
+            app:layout_constraintBottom_toBottomOf="@+id/light"
+            app:layout_constraintTop_toTopOf="@+id/light"
+            app:layout_constraintEnd_toStartOf="@+id/light" />
+
+        <View
             android:id="@+id/left_wire"
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:background="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/light"
-            app:layout_constraintEnd_toEndOf="@id/battery"
-            app:layout_constraintStart_toStartOf="@id/battery"
-            app:layout_constraintTop_toBottomOf="@+id/battery" />
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_left_wire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_left_wire" />
 
         <View
             android:id="@+id/right_wire"
@@ -53,9 +72,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_baseline_battery_charging_full_24"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_light_mode_24"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lence"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -79,6 +99,14 @@
             app:layout_constraintStart_toEndOf="@+id/battery"
             app:layout_constraintTop_toTopOf="@+id/battery" />
 
-
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/lence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_search_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
