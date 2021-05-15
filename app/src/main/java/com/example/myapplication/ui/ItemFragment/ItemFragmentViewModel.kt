@@ -6,7 +6,7 @@ import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.model.Repository
 
 class ItemFragmentViewModel (
-    private val repository: Repository = Repository()
+    private val repository: Repository
 ) : ViewModel(){
     fun loadItems(type: NestType) : List<ComponentsInfo>{
         return when(type){

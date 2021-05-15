@@ -2,7 +2,7 @@ package com.example.myapplication.ui.mainFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.model.LaserSaber
+import com.example.myapplication.model.electrocomponents.LaserSaber
 import com.example.myapplication.schemeerrors.ErrorScheme
 
 class MainViewModel : ViewModel() {

@@ -1,6 +1,6 @@
 package com.example.myapplication.componentsView
 
-import com.example.myapplication.model.BaseComponent
+import com.example.myapplication.model.electrocomponents.BaseComponent
 
 class LightItem(
     override val component: BaseComponent,

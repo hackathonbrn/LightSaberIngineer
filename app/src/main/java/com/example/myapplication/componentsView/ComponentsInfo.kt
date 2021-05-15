@@ -1,6 +1,6 @@
 package com.example.myapplication.componentsView
 
-import com.example.myapplication.model.BaseComponent
+import com.example.myapplication.model.electrocomponents.BaseComponent
 import java.io.Serializable
 
 abstract class ComponentsInfo : Item, Serializable {
