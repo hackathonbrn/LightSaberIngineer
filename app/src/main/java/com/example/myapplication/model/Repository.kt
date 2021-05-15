@@ -49,7 +49,7 @@ class Repository {
                 "E1",
                 350.0
             ),
-            R.drawable.lense_on
+            R.drawable.lense_off
         )
     )
 //    var laserSaber = LaserSaber()
