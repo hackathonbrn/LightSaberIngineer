@@ -30,7 +30,6 @@ class ItemFragment : Fragment() {
             view.adapter =
                 SaberAdapter(viewModel.loadItems(args.nestedType)) { bundle: Bundle ->
                     setFragmentResult(RESULT_COMPONENT_KEY, bundle)
-//                    onBack
                     findNavController().popBackStack()
                 }
         }

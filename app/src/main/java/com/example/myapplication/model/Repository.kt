@@ -8,29 +8,29 @@ class Repository {
     val batterys = listOf(
         BatteryItem(
             Battery("B120"),
-            R.drawable.ic_baseline_battery_charging_full_24
+            R.drawable.but100
         ),
         BatteryItem(
             Battery("B220"),
-            R.drawable.ic_baseline_light_mode_24
+            R.drawable.but50
         ),
         BatteryItem(
             Battery("B320"),
-            R.drawable.outline_add_circle_24
+            R.drawable.but100
         )
     )
     val lights = listOf(
         LightItem(
             Emitter("E1220"),
-            R.drawable.qwer
+            R.drawable.lense_on
         ),
         LightItem(
             Emitter("E12"),
-            R.drawable.ic_baseline_light_mode_24
+            R.drawable.lense_on
         ),
         LightItem(
             Emitter("E1"),
-            R.drawable.outline_remove_circle_24
+            R.drawable.lense_on
         )
     )
 
