@@ -12,5 +12,6 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (view as WebView).loadUrl(args.url)
+
     }
 }
