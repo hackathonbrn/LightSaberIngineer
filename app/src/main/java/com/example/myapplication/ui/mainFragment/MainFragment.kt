@@ -15,6 +15,7 @@ import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.Battery
 import com.example.myapplication.model.Emitter
+import com.example.myapplication.model.LaserSaber
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
 
 class MainFragment : Fragment() {
@@ -26,7 +27,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = MainFragmentBinding.inflate(inflater)
         binding.needBattery.text = getString(R.string.battery)
         binding.needEmitter.text = getString(R.string.emitter)
@@ -44,6 +45,7 @@ class MainFragment : Fragment() {
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
             )
         }
+        setHasOptionsMenu(true)
 
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener() { bundle ->
@@ -63,26 +65,22 @@ class MainFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.saber.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
 
             if (it.battery != null) {
                 binding.needBattery.text = it.battery.name
                 binding.needBattery.isChecked = true
             }
-                else binding.needBattery.text = getString(R.string.battery)
 
             if (it.emitter != null) {
                 binding.needEmitter.text = it.emitter.name
                 binding.needEmitter.isChecked = true
             }
-                else binding.needEmitter.text = getString(R.string.emitter)
 
             if (it.lense != null) {
                 binding.needLense.text = it.lense.name
                 binding.needLense.isChecked = true
             }
-                else binding.needLense.text = getString(R.string.lense)
-
         }
     }
 
@@ -101,9 +99,21 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.clean -> {
-                Toast.makeText(requireContext(), "dsv", Toast.LENGTH_LONG).show()
+                clear()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun clear(){
+        binding.needBattery.text = getString(R.string.battery)
+        binding.needBattery.isChecked = false
+        binding.needEmitter.text = getString(R.string.emitter)
+        binding.needEmitter.isChecked = false
+        binding.needLense.text = getString(R.string.lense)
+        binding.needLense.isChecked = false
+        viewModel.updateSaber {
+            LaserSaber(null, null, null)
+        }
     }
 }

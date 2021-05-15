@@ -14,4 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="BackgroundNorm">
+        <item name="android:background">@color/black</item>
+    </style>
 </resources>
