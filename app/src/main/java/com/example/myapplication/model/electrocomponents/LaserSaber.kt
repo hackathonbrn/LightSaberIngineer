@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.model.electrocomponents
 
 data class LaserSaber(
     val battery : Battery? = null,

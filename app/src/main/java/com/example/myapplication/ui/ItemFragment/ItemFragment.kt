@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 val RESULT_COMPONENT_KEY = "resultKey"
 
 class ItemFragment : Fragment() {
-    private val viewModel: ItemFragmentViewModel by viewModels()
+    private val viewModel: ItemFragmentViewModel by viewModel()
     private val args: ItemFragmentArgs by navArgs()
 
     override fun onCreateView(

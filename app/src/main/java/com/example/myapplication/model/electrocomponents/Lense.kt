@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.model.electrocomponents
 
 import com.example.myapplication.componentsView.NestType
 

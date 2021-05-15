@@ -15,9 +15,9 @@ import com.example.myapplication.componentsView.BatteryItem
 import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
-import com.example.myapplication.model.Battery
-import com.example.myapplication.model.Emitter
-import com.example.myapplication.model.LaserSaber
+import com.example.myapplication.model.electrocomponents.Battery
+import com.example.myapplication.model.electrocomponents.Emitter
+import com.example.myapplication.model.electrocomponents.LaserSaber
 import com.example.myapplication.saberUtils.SaberValidator
 import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY

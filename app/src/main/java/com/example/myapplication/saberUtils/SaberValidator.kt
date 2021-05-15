@@ -1,6 +1,6 @@
 package com.example.myapplication.saberUtils
 
-import com.example.myapplication.model.LaserSaber
+import com.example.myapplication.model.electrocomponents.LaserSaber
 
 class SaberValidator {
     companion object {

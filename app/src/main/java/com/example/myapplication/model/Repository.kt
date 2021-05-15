@@ -3,6 +3,8 @@ package com.example.myapplication.model
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.BatteryItem
 import com.example.myapplication.componentsView.LightItem
+import com.example.myapplication.model.electrocomponents.Battery
+import com.example.myapplication.model.electrocomponents.Emitter
 
 class Repository {
     val batterys = listOf(
