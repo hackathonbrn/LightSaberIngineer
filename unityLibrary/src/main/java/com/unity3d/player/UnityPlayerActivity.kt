@@ -5,9 +5,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.MotionEvent
-import android.view.Window
+import android.util.AttributeSet
+import android.view.*
+import android.widget.Button
 
 class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     protected var mUnityPlayer // don't change the name of this variable; referenced from native code
@@ -31,6 +31,15 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
         val cmdLine = updateUnityCommandLineArguments(intent?.getStringExtra("unity") ?: "")
         intent.putExtra("unity", cmdLine)
         mUnityPlayer = UnityPlayer(this, this)
+        mUnityPlayer!!.addView(Button(baseContext).apply {
+            text = "Назад"
+            setOnClickListener {
+                finish()
+            }
+            gravity = Gravity.START
+            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            width = 200
+        })
         setContentView(mUnityPlayer)
         mUnityPlayer!!.requestFocus()
     }
@@ -41,7 +50,9 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     }
 
     // Callback before Unity player process is killed
-    override fun onUnityPlayerQuitted() {}
+    override fun onUnityPlayerQuitted() {
+
+    }
     override fun onNewIntent(intent: Intent) {
         // To support deep linking, we need to make sure that the client can get access to
         // the last sent intent. The clients access this through a JNI api that allows them
@@ -122,4 +133,6 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     override fun onGenericMotionEvent(event: MotionEvent): Boolean {
         return mUnityPlayer!!.injectEvent(event)
     }
+
+
 }

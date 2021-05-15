@@ -188,6 +188,7 @@ class MainFragment : Fragment() {
             requireContext(),
             UnityPlayerActivity::class.java
         )
+//        intent.
         requireActivity().startActivity(intent)
     }
 }

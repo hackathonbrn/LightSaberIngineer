@@ -8,7 +8,8 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
             android:hardwareAccelerated="false"
             android:launchMode="singleTask"
-            android:screenOrientation="fullSensor"
+            android:process=":unityplayer"
+            android:screenOrientation="landscape"
             android:theme="@style/UnityThemeSelector">
             <meta-data
                 android:name="unityplayer.UnityActivity"
