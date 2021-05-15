@@ -12,4 +12,5 @@
     <string name="emitter">Излучатель</string>
     <string name="lense">Линза</string>
     <string name="clean">Очистить</string>
+    <string name="play">Играть!</string>
 </resources>

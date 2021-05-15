@@ -1,9 +1,9 @@
 package com.example.myapplication.ui.mainFragment
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResultListener
@@ -16,7 +16,10 @@ import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.Battery
 import com.example.myapplication.model.Emitter
 import com.example.myapplication.model.LaserSaber
+import com.example.myapplication.saberUtils.SaberValidator
+import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
+import com.unity3d.player.UnityPlayerActivity
 
 class MainFragment : Fragment() {
 
@@ -59,11 +62,40 @@ class MainFragment : Fragment() {
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
             )
         }
-        initObserver()
+        initObservers()
         return binding.root
     }
 
-    private fun initObserver() {
+    private fun initObservers() {
+        initErrorObserver()
+        initComponentObserver()
+    }
+
+    private fun initErrorObserver() {
+        viewModel.errorsLive.observe(viewLifecycleOwner) {
+            if (it != null) {
+                AlertDialog.Builder(requireContext())
+                    .setPositiveButton(
+                        "Ok"
+                    ) { dialog, which -> }
+                    .setNegativeButton(
+                        "Справка"
+                    ) { dialog, which ->
+                        toManual(it.MANUAL_URL)
+                    }
+                    .setTitle(it.title)
+                    .setMessage(it.description)
+                    .create()
+                    .show()
+            }
+        }
+    }
+
+    private fun toManual(manualUrl: String?) {
+        TODO("To manual webView")
+    }
+
+    private fun initComponentObserver() {
         viewModel.saber.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
 
@@ -97,15 +129,18 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.clean -> {
                 clear()
+            }
+            R.id.play -> {
+                validateLaserSaber()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun clear(){
+    fun clear() {
         binding.needBattery.text = getString(R.string.battery)
         binding.needBattery.isChecked = false
         binding.needEmitter.text = getString(R.string.emitter)
@@ -115,5 +150,26 @@ class MainFragment : Fragment() {
         viewModel.updateSaber {
             LaserSaber(null, null, null)
         }
+    }
+
+    fun validateLaserSaber() {
+        val saber = viewModel.saber.value
+        if (!SaberValidator.allComponentsOnPlace(saber))
+            viewModel.invokeError(
+                ErrorScheme(
+                    "Ошибка сборки",
+                    "Вы забыли какой-то из элементов!",
+                    "здесь ссылка на справку"
+                )
+            )
+    }
+
+
+    fun toUnity() {
+        val intent = Intent(
+            requireContext(),
+            UnityPlayerActivity::class.java
+        )
+        requireActivity().startActivity(intent)
     }
 }
