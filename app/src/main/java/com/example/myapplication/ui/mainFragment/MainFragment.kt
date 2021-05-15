@@ -11,6 +11,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.componentsView.BatteryItem
+import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.Battery
@@ -39,7 +41,7 @@ class MainFragment : Fragment() {
             setResultListener() { bundle ->
                 viewModel.updateSaber {
                     it.copy(
-                        battery = (bundle.get(NestType.BATTERY.name) as Battery)
+                        battery = (bundle.get(NestType.BATTERY.name) as BatteryItem).component as Battery
                     )
                 }
             }
@@ -52,11 +54,14 @@ class MainFragment : Fragment() {
 
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener() { bundle ->
+
+                val ugo = (bundle.get(NestType.EMITTER.name) as LightItem)
                 viewModel.updateSaber {
                     it.copy(
-                        emitter = (bundle.get(NestType.EMITTER.name) as Emitter)
+                        emitter = ugo.component as Emitter
                     )
                 }
+                binding.simpleSchemeView.setImage(ugo.imageResource, NestType.EMITTER)
             }
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
@@ -74,28 +79,35 @@ class MainFragment : Fragment() {
     private fun initErrorObserver() {
         viewModel.errorsLive.observe(viewLifecycleOwner) {
             if (it != null) {
-                AlertDialog.Builder(requireContext())
-                    .setPositiveButton(
-                        "Ok"
-                    ) { dialog, which ->
-                        viewModel.errorResolved()
-                    }
-                    .setNegativeButton(
-                        "Справка"
-                    ) { dialog, which ->
-                        viewModel.errorResolved()
-                        toManual(it.MANUAL_URL)
-                    }
-                    .setTitle(it.title)
-                    .setMessage(it.description)
-                    .create()
-                    .show()
+                createSupportDialog(it)
             }
         }
     }
 
-    private fun toManual(manualUrl: String?) {
-        TODO("To manual webView")
+    private fun createSupportDialog(it: ErrorScheme) {
+        AlertDialog.Builder(requireContext())
+            .setPositiveButton(
+                "Ok"
+            ) { dialog, which ->
+                viewModel.errorResolved()
+            }
+            .setNegativeButton(
+                "Справка"
+            ) { dialog, which ->
+                viewModel.errorResolved()
+                toManual(it.MANUAL_URL)
+            }
+            .setTitle(it.title)
+            .setMessage(it.description)
+            .create()
+            .show()
+    }
+
+    private fun toManual(manualUrl: String) {
+        findNavController()
+            .navigate(
+                MainFragmentDirections.actionMainFragmentToWebViewFragment(manualUrl)
+            )
     }
 
     private fun initComponentObserver() {
@@ -137,7 +149,8 @@ class MainFragment : Fragment() {
                 clear()
             }
             R.id.play -> {
-                validateLaserSaber()
+                if (validateLaserSaber())
+                    toUnity()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -155,19 +168,19 @@ class MainFragment : Fragment() {
         }
     }
 
-    fun validateLaserSaber() {
+    fun validateLaserSaber(): Boolean {
         val saber = viewModel.saber.value
         if (!SaberValidator.allComponentsOnPlace(saber))
             viewModel.invokeError(
                 ErrorScheme.BUILD
             ) else {
-
             if (!SaberValidator.hasEnergyToStart(saber!!)) {
                 viewModel.invokeError(
                     ErrorScheme.LOW_BATTERY
                 )
-            }
+            } else return true
         }
+        return false
     }
 
     fun toUnity() {

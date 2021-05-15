@@ -58,7 +58,7 @@ class SaberAdapter(
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {
                 function.invoke(
-                    bundleOf(componentsInfo.viewType.name to componentsInfo.component)
+                    bundleOf(componentsInfo.viewType.name to componentsInfo)
                 )
             }
         }
@@ -75,7 +75,7 @@ class SaberAdapter(
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {
                 function.invoke(
-                    bundleOf(componentsInfo.viewType.name to componentsInfo.component)
+                    bundleOf(componentsInfo.viewType.name to componentsInfo)
                 )
             }
         }
