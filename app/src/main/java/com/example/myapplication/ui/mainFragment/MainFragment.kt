@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.mainFragment
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -21,7 +20,6 @@ import com.example.myapplication.model.electrocomponents.LaserSaber
 import com.example.myapplication.saberUtils.SaberValidator
 import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
-import com.unity3d.player.UnityPlayerActivity
 
 class MainFragment : Fragment() {
 
@@ -184,10 +182,10 @@ class MainFragment : Fragment() {
     }
 
     fun toUnity() {
-        val intent = Intent(
-            requireContext(),
-            UnityPlayerActivity::class.java
-        )
-        requireActivity().startActivity(intent)
+//        val intent = Intent(
+//            requireContext(),
+//            UnityPlayerActivity::class.java
+//        )
+//        requireActivity().startActivity(intent)
     }
 }
