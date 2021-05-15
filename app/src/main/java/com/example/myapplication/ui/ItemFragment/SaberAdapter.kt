@@ -51,6 +51,7 @@ class SaberAdapter(
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
+            contentView.setText(componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
             imageView.setOnClickListener {
                 function.invoke(
@@ -65,6 +66,7 @@ class SaberAdapter(
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
+            contentView.setText(componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
             imageView.setOnClickListener {
                 function.invoke(

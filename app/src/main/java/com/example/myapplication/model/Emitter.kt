@@ -1,9 +1,7 @@
 package com.example.myapplication.model
-
-class Emitter(
 import com.example.myapplication.componentsView.NestType
 
-class Emmiter(
+class Emitter(
     override val name: String
 ) : BaseComponent() {
     val voltage = 0.0

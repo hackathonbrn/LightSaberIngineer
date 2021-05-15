@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">LightSaber Engineer</string>
     <string name="game_view_content_description">Game view</string>
     <array name="Figures">
         <item>Rectangle</item>
@@ -7,4 +7,9 @@
         <item>Triangle</item>
         <item>Picture</item>
     </array>
+    <string name="message_laser">Для сборки лазерного меча необходимо: </string>
+    <string name="battery">Аккумулятор</string>
+    <string name="emitter">Излучатель</string>
+    <string name="lense">Линза</string>
+    <string name="clean">Очистить</string>
 </resources>
