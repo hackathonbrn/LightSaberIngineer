@@ -20,6 +20,43 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:id="@+id/left_wire"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:background="@drawable/wire_al_vert"
+            app:layout_constraintBottom_toTopOf="@+id/battery"
+            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
+            app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
+
+        <View
+            android:id="@+id/cor_left_top"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="270"
+            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
+            app:layout_constraintTop_toTopOf="@+id/left_wire" />
+
+        <View
+            android:id="@+id/left_wire2"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="34dp"
+            android:background="@drawable/wire_al_vert"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_left_wire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/battery" />
+
+        <View
+            android:id="@+id/cor_left_bot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@id/left_wire2"
+            app:layout_constraintStart_toStartOf="@+id/left_wire2" />
+
+        <View
             android:id="@+id/bottom_left_wire"
             android:layout_width="0dp"
             android:layout_height="6dp"
@@ -30,39 +67,20 @@
             app:layout_constraintStart_toEndOf="@+id/left_wire2" />
 
         <View
-            android:id="@+id/left_wire"
-            android:layout_width="6dp"
-            android:layout_height="0dp"
-            android:background="@drawable/wire_al_vert"
-            app:layout_constraintBottom_toTopOf="@+id/battery"
-            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
-            app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
-
-        <View
-            android:id="@+id/cor_right_top"
+            android:elevation="20dp"
+            android:id="@+id/cor_right_bot"
             android:layout_width="6dp"
             android:layout_height="6dp"
-
             android:background="@drawable/wire_al_corner"
-            android:rotation="270"
-            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
-            app:layout_constraintTop_toTopOf="@+id/left_wire" />
-
-        <View
-            android:id="@+id/left_wire2"
-            style="@style/BackgroundNorm"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="34dp"
+            android:rotation="90"
             app:layout_constraintBottom_toBottomOf="@+id/bottom_left_wire"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/battery" />
+            app:layout_constraintEnd_toEndOf="@+id/bottom_left_wire" />
 
         <View
             android:id="@+id/right_wire"
-            style="@style/BackgroundNorm"
-            android:layout_width="1dp"
+            android:layout_width="6dp"
             android:layout_height="0dp"
+            android:background="@drawable/wire_al_vert"
             android:layout_marginEnd="34dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_left_wire"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,14 +89,23 @@
 
         <View
             android:id="@+id/right_wire2"
-            style="@style/BackgroundNorm"
-            android:layout_width="1dp"
+            android:layout_width="6dp"
             android:layout_height="0dp"
+            android:background="@drawable/wire_al_vert"
             android:layout_marginEnd="34dp"
             app:layout_constraintBottom_toTopOf="@id/light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/light"
             app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
+
+        <View
+            android:id="@+id/cor_right_top"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/wire_al_corner"
+            android:rotation="0"
+            app:layout_constraintEnd_toEndOf="@+id/right_wire2"
+            app:layout_constraintTop_toTopOf="@+id/right_wire2" />
 
         <ImageButton
             android:id="@+id/light"
