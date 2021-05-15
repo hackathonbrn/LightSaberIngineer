@@ -8,11 +8,11 @@ enum class ErrorScheme(
     BUILD(
         "Ошибка сборки",
         "Вы забыли какой-то из элементов!",
-        "https://github.com/"
+        "file:///android_asset/start.html"
     ),
     LOW_BATTERY(
         "Не хватает энергии",
         "Мощности аккумулятора нехватает для питания излучателя",
-        "https://github.com/"
+        "file:///android_asset/battery.html"
     ),
 }
