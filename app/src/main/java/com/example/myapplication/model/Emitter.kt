@@ -1,5 +1,6 @@
 package com.example.myapplication.model
 
+class Emitter(
 import com.example.myapplication.componentsView.NestType
 
 class Emmiter(

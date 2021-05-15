@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.Battery
-import com.example.myapplication.model.Emmiter
+import com.example.myapplication.model.Emitter
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
 
 class MainFragment : Fragment() {
@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
             setResultListener() { bundle ->
                 viewModel.updateSaber {
                     it.copy(
-                        emmiter = (bundle.get(NestType.EMITTER.name) as Emmiter)
+                        emitter = (bundle.get(NestType.EMITTER.name) as Emitter)
                     )
                 }
             }
