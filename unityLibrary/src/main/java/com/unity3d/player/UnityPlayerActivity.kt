@@ -40,9 +40,6 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
             text = "Назад"
             setOnClickListener {
                 finish()
-//            val command: String? = intent?.getStringExtra(COMMAND_KEY)
-//            UnityPlayer.UnitySendMessage("LobbyManager", "SetSwordParameters", command)
-
             }
             gravity = Gravity.START
             layoutParams = ViewGroup.LayoutParams(
