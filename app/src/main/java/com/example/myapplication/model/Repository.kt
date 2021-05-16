@@ -172,6 +172,24 @@ class Repository {
             ),
             R.drawable.lenc_7_25
         ),
+        LensItem(
+            Lens(
+                "Линза X||",
+                9999.0,
+                9999.0,
+                range = 0.0f
+            ),
+            R.drawable.lence_error_1
+        ),
+        LensItem(
+            Lens(
+                "Линза X|||",
+                -0.7,
+                9999.0,
+                range = 0.0f
+            ),
+            R.drawable.lence_error_2
+        ),
     )
 
 
