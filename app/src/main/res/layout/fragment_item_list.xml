@@ -14,4 +14,4 @@
     app:layoutManager="LinearLayoutManager"
     android:layout_gravity="start|top"
     tools:context=".ui.ItemFragment.ItemFragment"
-    tools:listitem="@layout/fragment_item" />
+    tools:listitem="@layout/fragment_item_emitter" />

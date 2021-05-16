@@ -27,12 +27,12 @@ class SaberAdapter(
         return when (NestType.values().find { it.id == viewType }) {
             NestType.BATTERY -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fragment_item, parent, false)
+                    .inflate(R.layout.fragment_item_battery, parent, false)
                 ViewHolderBattery(view)
             }
             NestType.EMITTER -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fragment_item, parent, false)
+                    .inflate(R.layout.fragment_item_emitter, parent, false)
                 ViewHolderLight(view)
             }
             else -> throw Exception("No VIEW HOLDER TIME")
@@ -49,12 +49,12 @@ class SaberAdapter(
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolderBattery(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
+        val character: TextView = view.findViewById(R.id.character)
         val cardView: MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
-            //idView.setText((position+1).toString() + ".")
+            character.text = "Начальный ток: " + componentsInfo.component.character
             contentView.setText("Аккумулятор " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {
@@ -69,13 +69,12 @@ class SaberAdapter(
         val idView: TextView = view.findViewById(R.id.item_number)
         val cardView: MaterialCardView = view.findViewById(R.id.card)
         val character: TextView = view.findViewById(R.id.character)
-        val cardView : MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
             idView.setText("Диапазон излучения: " + (componentsInfo.component as Emitter).range.toString())
             //idView.setText((position+1).toString() + ".")
-            character.text = "Напряжение" + componentsInfo.component.character
+            character.text = "Напряжение: " + componentsInfo.component.character
             contentView.setText("Излучатель " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {

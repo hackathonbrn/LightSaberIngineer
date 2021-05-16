@@ -64,7 +64,8 @@ class Repository {
                 "E12",
                 250.0,
                 480..510,
-                Color.rgb(1f,0.5f,0.2f)
+                Color.CYAN
+                // Color.rgb(1f,0.5f,0.2f)
             ),
             R.drawable.emitter_lamp
         ),
@@ -90,7 +91,8 @@ class Repository {
                 "E6",
                 310.0,
                 600..620,
-                Color.rgb(0.2f, 0.5f, 1f)
+                Color.TRANSPARENT
+                //Color.rgb(0.2f, 0.5f, 1f)
             ),
             R.drawable.emitter_brown
         ),
