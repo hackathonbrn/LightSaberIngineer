@@ -189,6 +189,9 @@ class MainFragment : Fragment() {
         viewModel.updateSaber {
             LaserSaber(null, null, null)
         }
+        viewModel.batteryNestLive.value = null
+        viewModel.emitterNestLive.value = null
+        viewModel.lensNestLive.value = null
     }
 
     fun validateLaserSaber(): Boolean {
@@ -221,7 +224,6 @@ class MainFragment : Fragment() {
             requireContext(),
             UnityPlayerActivity::class.java
         )
-        clear()
         intent.putExtra(COMMAND_KEY, saberConfig)
         requireActivity().startActivity(intent)
     }
