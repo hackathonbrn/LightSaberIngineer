@@ -4,8 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
@@ -29,7 +27,6 @@ import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
 import com.unity3d.player.COMMAND_KEY
 import com.unity3d.player.UnityPlayerActivity
-import org.koin.android.ext.android.bind
 
 class MainFragment : Fragment() {
 
@@ -42,16 +39,14 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = MainFragmentBinding.inflate(inflater)
-        binding.needBattery.text = getString(R.string.battery)
-        binding.needEmitter.text = getString(R.string.emitter)
-        binding.needLense.text = getString(R.string.lense)
         binding.cleanBut.setOnClickListener {
             clear()
         }
         binding.runBut.setOnClickListener {
             if (validateLaserSaber()) {
                 val color = (viewModel.emitterNestLive.value?.component as Emitter).color
-                val range = ((viewModel.lensNestLive.value?.component as Lens).range * 100).toInt().toString()
+                val range = ((viewModel.lensNestLive.value?.component as Lens).range * 100).toInt()
+                    .toString()
                 val str = "${color.red},${color.green},${color.blue},$range"
                 toUnity(str)
             }
@@ -167,21 +162,16 @@ class MainFragment : Fragment() {
 
     private fun initComponentObserver() {
         viewModel.saber.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-
-            if (it.battery != null) {
-                binding.needBattery.text = it.battery.name
-                binding.needBattery.isChecked = true
+            if (it.battery == null) {
+                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.BATTERY)
             }
 
-            if (it.emitter != null) {
-                binding.needEmitter.text = it.emitter.name
-                binding.needEmitter.isChecked = true
+            if (it.emitter == null) {
+                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.EMITTER)
             }
 
-            if (it.lens != null) {
-                binding.needLense.text = it.lens.name
-                binding.needLense.isChecked = true
+            if (it.lens == null) {
+                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.LENCE)
             }
         }
     }
@@ -194,13 +184,6 @@ class MainFragment : Fragment() {
     }
 
     fun clear() {
-        binding.needBattery.text = getString(R.string.battery)
-        binding.needBattery.isChecked = false
-        binding.needEmitter.text = getString(R.string.emitter)
-        binding.needEmitter.isChecked = false
-        binding.needLense.text = getString(R.string.lense)
-        binding.needLense.isChecked = false
-        //binding.simpleSchemeView.battery.background = getDrawable(requireContext(), R.drawable.ic_baseline_battery_charging_full_24)
         viewModel.updateSaber {
             LaserSaber(null, null, null)
         }
@@ -227,7 +210,7 @@ class MainFragment : Fragment() {
             UnityPlayerActivity::class.java
         )
         clear()
-        intent.putExtra(COMMAND_KEY,saberConfig)
+        intent.putExtra(COMMAND_KEY, saberConfig)
         requireActivity().startActivity(intent)
     }
 }
