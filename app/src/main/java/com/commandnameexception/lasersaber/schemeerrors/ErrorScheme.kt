@@ -15,7 +15,7 @@ enum class ErrorScheme(
         "Мощности аккумулятора нехватает для питания излучателя!",
         "file:///android_asset/battery.html"
     ),
-    BAD_LENC(
+    BAD_LENS(
         "Что-то не так с линзой!",
         "Луч не сфокусировался и чуть не уничтожил рабочий стол, нужно сменить линзу!",
         "file:///android_asset/battery.html"

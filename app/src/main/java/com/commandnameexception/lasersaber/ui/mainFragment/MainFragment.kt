@@ -29,6 +29,7 @@ import com.commandnameexception.lasersaber.schemeerrors.ErrorScheme
 import com.commandnameexception.lasersaber.ui.ItemFragment.RESULT_COMPONENT_KEY
 import com.unity3d.player.COMMAND_KEY
 import com.unity3d.player.UnityPlayerActivity
+import org.koin.android.ext.android.bind
 
 class MainFragment : Fragment() {
 
@@ -53,7 +54,9 @@ class MainFragment : Fragment() {
                 toUnity(str)
             }
         }
-
+        binding.manualBut.setOnClickListener {
+            toManual("file:///android_asset/tableOfContent.html")
+        }
         initNestListeners()
         initObservers()
         return binding.root
@@ -209,7 +212,7 @@ class MainFragment : Fragment() {
 
             if (!SaberValidator.chooseLenCorrect(saber!!)) {
                 viewModel.invokeError(
-                    ErrorScheme.BAD_LENC
+                    ErrorScheme.BAD_LENS
                 )
                 return false
             }

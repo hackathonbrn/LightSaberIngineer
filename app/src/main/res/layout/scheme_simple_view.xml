@@ -27,16 +27,17 @@
             android:layout_marginTop="34dp"
             android:background="@drawable/wire_al_hor"
             app:layout_constraintEnd_toStartOf="@+id/rezistor"
-            app:layout_constraintStart_toStartOf="@+id/left_wire2"
+            app:layout_constraintStart_toStartOf="@+id/left_wire"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/left_wire"
             android:layout_width="6dp"
             android:layout_height="0dp"
+            android:layout_marginStart="60dp"
             android:background="@drawable/wire_al_vert"
             app:layout_constraintBottom_toTopOf="@+id/battery"
-            app:layout_constraintStart_toStartOf="@+id/top_left_wire"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
 
         <View
@@ -52,7 +53,7 @@
             android:id="@+id/left_wire2"
             android:layout_width="6dp"
             android:layout_height="0dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="60dp"
             android:background="@drawable/wire_al_vert"
             app:layout_constraintBottom_toBottomOf="@+id/bottom_left_wire"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +135,7 @@
             android:layout_width="170dp"
             android:layout_height="128dp"
             android:layout_margin="10dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:background="@drawable/ic_addwithback"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"

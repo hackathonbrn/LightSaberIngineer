@@ -36,6 +36,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/manual_but"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@color/cust_fio"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/list_alt_24"
+        app:borderWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.commandnameexception.lasersaber.schemeView.SimpleSchemeView
         android:id="@+id/simple_scheme_view"
         android:layout_width="match_parent"
