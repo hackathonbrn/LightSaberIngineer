@@ -7,7 +7,7 @@ data class Lens(
     val r1 : Double,
     val r2 : Double,
     val n : Double = 1.5,
-    val range : Double
+    val range : Float
 ) : BaseComponent() {
     override val character: String = ""
     override val type: NestType = NestType.LENCE

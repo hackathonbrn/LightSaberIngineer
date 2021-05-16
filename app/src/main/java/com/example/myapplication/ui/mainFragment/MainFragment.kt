@@ -50,7 +50,7 @@ class MainFragment : Fragment() {
         binding.runBut.setOnClickListener {
             if (validateLaserSaber()) {
                 val color = (viewModel.emitterNestLive.value?.component as Emitter).color
-                val range = (viewModel.lensNestLive.value?.component as Lens).range
+                val range = ((viewModel.lensNestLive.value?.component as Lens).range * 100).toInt().toString()
                 val str = "${color.red},${color.green},${color.blue},$range"
                 toUnity(str)
             }

@@ -3,11 +3,16 @@ package com.unity3d.player
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.ImageButton
+import androidx.annotation.RequiresApi
 
 
 val COMMAND_KEY = "commandKey"
@@ -28,6 +33,7 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
     }
 
     // Setup activity layout
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
@@ -36,17 +42,16 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
         mUnityPlayer = UnityPlayer(this, this)
 
         //TODO castomize button back
-        mUnityPlayer!!.addView(Button(baseContext).apply {
-            text = "Назад"
+        mUnityPlayer!!.addView(ImageButton(baseContext).apply {
+            setImageResource(R.drawable.ic_baseline_arrow_back_24)
             setOnClickListener {
                 finish()
             }
-            gravity = Gravity.START
+            backgroundTintList = ColorStateList.valueOf(Color.BLUE)
             layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-            width = 200
         })
         setContentView(mUnityPlayer)
         mUnityPlayer!!.requestFocus()
