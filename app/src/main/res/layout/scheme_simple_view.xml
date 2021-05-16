@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/work_table_background"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -110,7 +111,7 @@
 
         <ImageButton
             android:id="@+id/light"
-            android:layout_width="128dp"
+            android:layout_width="170dp"
             android:layout_height="128dp"
             android:scaleType="centerCrop"
             tools:src="@drawable/emitter_blue"
@@ -123,6 +124,7 @@
             android:id="@+id/battery"
             android:src="@drawable/ic_baseline_battery_charging_full_24"
             android:layout_width="128dp"
+            android:scaleType="centerCrop"
             android:layout_height="128dp"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -137,13 +139,15 @@
             android:src="@drawable/outline_add_circle_24"
             app:layout_constraintEnd_toEndOf="@+id/battery"
             app:layout_constraintStart_toStartOf="@+id/battery"
-            app:layout_constraintTop_toTopOf="@+id/battery" />
+            app:layout_constraintTop_toTopOf="@+id/battery"
+            style="@style/laserImageView" />
 
-        <ImageView
+        <ImageButton
+            android:scaleType="centerCrop"
             android:id="@+id/lence"
-            android:layout_marginEnd="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             android:src="@drawable/outline_search_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,7 +12,7 @@ class ItemFragmentViewModel (
         return when(type){
             NestType.BATTERY -> repository.batterys
             NestType.EMITTER -> repository.lights
-            NestType.LENCE -> repository.lights
+            NestType.LENCE -> repository.lenses
         }
     }
 }

@@ -3,7 +3,6 @@ package com.example.myapplication.ui.mainFragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.core.graphics.blue
@@ -16,12 +15,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.BatteryItem
+import com.example.myapplication.componentsView.LensItem
 import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.databinding.MainFragmentBinding
 import com.example.myapplication.model.electrocomponents.Battery
 import com.example.myapplication.model.electrocomponents.Emitter
 import com.example.myapplication.model.electrocomponents.LaserSaber
+import com.example.myapplication.model.electrocomponents.Lens
 import com.example.myapplication.saberUtils.SaberValidator
 import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
@@ -50,7 +51,6 @@ class MainFragment : Fragment() {
             if (validateLaserSaber()) {
                 val color = (viewModel.emitterNestLive.value?.component as Emitter).color
                 val str = "${color.red},${color.green},${color.blue}"
-                Log.d("COLOR", str)
                 toUnity(str)
             }
         }
@@ -92,15 +92,29 @@ class MainFragment : Fragment() {
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
             )
         }
+        binding.simpleSchemeView.setOnLensClickListener {
+            setResultListener { bundle ->
+                val lensItem = (bundle.get(NestType.LENCE.name) as LensItem)
+                viewModel.lensNestLive.value = lensItem
+                viewModel.updateSaber {
+                    it.copy(
+                        lens = lensItem.component as Lens
+                    )
+                }
+            }
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.LENCE)
+            )
+        }
     }
 
     private fun initObservers() {
         initErrorObserver()
         initComponentObserver()
-        initobserveNest()
+        initObserveNests()
     }
 
-    private fun initobserveNest() {
+    private fun initObserveNests() {
         viewModel.emitterNestLive.observe(viewLifecycleOwner) {
             if (it != null)
                 binding.simpleSchemeView.setImage(it.imageResource, NestType.EMITTER)
@@ -108,6 +122,10 @@ class MainFragment : Fragment() {
         viewModel.batteryNestLive.observe(viewLifecycleOwner) {
             if (it != null)
                 binding.simpleSchemeView.setImage(it.imageResource, NestType.BATTERY)
+        }
+        viewModel.lensNestLive.observe(viewLifecycleOwner) {
+            if (it != null)
+                binding.simpleSchemeView.setImage(it.imageResource, NestType.LENCE)
         }
     }
 
@@ -159,8 +177,8 @@ class MainFragment : Fragment() {
                 binding.needEmitter.isChecked = true
             }
 
-            if (it.lense != null) {
-                binding.needLense.text = it.lense.name
+            if (it.lens != null) {
+                binding.needLense.text = it.lens.name
                 binding.needLense.isChecked = true
             }
         }

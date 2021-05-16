@@ -6,9 +6,11 @@ import androidx.annotation.RequiresApi
 import androidx.core.graphics.ColorUtils
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.BatteryItem
+import com.example.myapplication.componentsView.LensItem
 import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.model.electrocomponents.Battery
 import com.example.myapplication.model.electrocomponents.Emitter
+import com.example.myapplication.model.electrocomponents.Lens
 
 class Repository {
     val batterys = listOf(
@@ -48,6 +50,7 @@ class Repository {
             R.drawable.but100
         )
     )
+
     @RequiresApi(Build.VERSION_CODES.O)
     val lights = listOf(
         LightItem(
@@ -64,8 +67,7 @@ class Repository {
                 "E12",
                 250.0,
                 480..510,
-                Color.CYAN
-                // Color.rgb(1f,0.5f,0.2f)
+                Color.rgb(1f,0.5f,0.2f)
             ),
             R.drawable.emitter_lamp
         ),
@@ -86,13 +88,13 @@ class Repository {
                 Color.GREEN
             ),
             R.drawable.emitter_rose
-        ),LightItem(
+        ),
+        LightItem(
             Emitter(
                 "E6",
                 310.0,
                 600..620,
-                Color.TRANSPARENT
-                //Color.rgb(0.2f, 0.5f, 1f)
+                Color.rgb(0.2f, 0.5f, 1f)
             ),
             R.drawable.emitter_brown
         ),
@@ -115,5 +117,57 @@ class Repository {
             R.drawable.emitter_two
         ),
     )
-//    var laserSaber = LaserSaber()
+
+    val lenses = listOf(
+        LensItem(
+            Lens(
+                "Линза |",
+                0.4,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+        LensItem(
+            Lens(
+                "Линза ||",
+                0.37,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+        LensItem(
+            Lens(
+                "Линза |||",
+                0.34,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+        LensItem(
+            Lens(
+                "Линза |X",
+                0.31,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+        LensItem(
+            Lens(
+                "Линза X",
+                0.28,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+        LensItem(
+            Lens(
+                "Линза X|",
+                0.25,
+                0.7
+            ),
+            R.drawable.delete_forever_24
+        ),
+    )
+
+
 }

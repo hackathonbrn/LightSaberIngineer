@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.ItemFragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.myapplication.R
 import com.example.myapplication.componentsView.ComponentsInfo
 import com.example.myapplication.componentsView.NestType
 import com.example.myapplication.model.electrocomponents.Emitter
+import com.example.myapplication.model.electrocomponents.Lens
 import com.google.android.material.card.MaterialCardView
 
 class SaberAdapter(
@@ -34,6 +36,11 @@ class SaberAdapter(
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_item_emitter, parent, false)
                 ViewHolderLight(view)
+            }
+            NestType.LENCE -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.fragment_item, parent, false)
+                ViewHolderLens(view)
             }
             else -> throw Exception("No VIEW HOLDER TIME")
         }
@@ -75,6 +82,29 @@ class SaberAdapter(
             idView.setText("Диапазон: " + (componentsInfo.component as Emitter).range.toString())
             character.text = "Напряжение: " + componentsInfo.component.character
             contentView.setText("Излучатель " + componentsInfo.component.name)
+            imageView.setImageResource(componentsInfo.imageResource)
+            cardView.setOnClickListener {
+                function.invoke(
+                    bundleOf(componentsInfo.viewType.name to componentsInfo)
+                )
+            }
+        }
+    }
+
+    inner class ViewHolderLens(view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = view.findViewById(R.id.item_number)
+        val cardView: MaterialCardView = view.findViewById(R.id.card)
+        val contentView: TextView = view.findViewById(R.id.content)
+        val imageView: ImageView = view.findViewById(R.id.image)
+        @SuppressLint("SetTextI18n")
+        fun onBind(componentsInfo: ComponentsInfo) {
+            val lens = componentsInfo.component as Lens
+            title.setText(lens.name)
+            contentView.setText(
+                "R1 = ${lens.r1}" +
+                        "R2 = ${lens.r2}" +
+                        "n = ${lens.n}"
+            )
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {
                 function.invoke(
