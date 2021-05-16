@@ -3,7 +3,6 @@ package com.example.myapplication.model
 import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.graphics.ColorUtils
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.BatteryItem
 import com.example.myapplication.componentsView.LensItem
@@ -67,7 +66,7 @@ class Repository {
                 "E12",
                 250.0,
                 480..510,
-                Color.rgb(1f,0.5f,0.2f)
+                Color.rgb(1f, 0.5f, 0.2f)
             ),
             R.drawable.emitter_lamp
         ),
@@ -123,49 +122,55 @@ class Repository {
             Lens(
                 "Линза |",
                 0.4,
-                0.7
+                0.7,
+                range = 1.86f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_4
         ),
         LensItem(
             Lens(
                 "Линза ||",
                 0.37,
-                0.7
+                0.7,
+                range = 1.56f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_37
         ),
         LensItem(
             Lens(
                 "Линза |||",
                 0.34,
-                0.7
+                0.7,
+                range = 1.32f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_34
         ),
         LensItem(
             Lens(
                 "Линза |X",
                 0.31,
-                0.7
+                0.7,
+                range = 1.11f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_31
         ),
         LensItem(
             Lens(
                 "Линза X",
                 0.28,
-                0.7
+                0.7,
+                range = 0.93f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_28
         ),
         LensItem(
             Lens(
                 "Линза X|",
                 0.25,
-                0.7
+                0.7,
+                range = 0.77f
             ),
-            R.drawable.delete_forever_24
+            R.drawable.lenc_7_25
         ),
     )
 
