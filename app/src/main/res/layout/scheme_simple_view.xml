@@ -131,14 +131,16 @@
 
         <ImageButton
             android:id="@+id/battery"
-            android:background="@drawable/ic_addwithback"
-            android:layout_width="160dp"
-            android:scaleType="fitXY"
+            android:layout_width="170dp"
             android:layout_height="128dp"
             android:layout_margin="10dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_addwithback"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498" />
 
         <ImageView
             android:id="@+id/plus_cleat_battery"
@@ -211,12 +213,12 @@
             app:layout_constraintTop_toTopOf="@+id/top_left_wire" />
 
         <ImageButton
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:id="@+id/lence"
             android:layout_marginEnd="20dp"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:background="@drawable/ic_addwithback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addwithbackloooong"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

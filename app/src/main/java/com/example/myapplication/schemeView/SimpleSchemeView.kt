@@ -31,7 +31,7 @@ class SimpleSchemeView(
         when (nestType) {
             NestType.BATTERY -> binding.battery.setImageResource(id)
             NestType.EMITTER -> binding.light.setImageResource(id)
-            NestType.LENCE -> binding.lence.setImageResource(id)
+            NestType.LENCE -> binding.lence.setBackgroundResource(id)
         }
     }
 

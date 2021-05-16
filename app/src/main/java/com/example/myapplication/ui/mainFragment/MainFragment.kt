@@ -78,7 +78,7 @@ class MainFragment : Fragment() {
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
             )
         }
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
 
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener { bundle ->
