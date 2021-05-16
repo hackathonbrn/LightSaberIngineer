@@ -66,11 +66,13 @@ class SaberAdapter(
 
     inner class ViewHolderLight(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
+        val character: TextView = view.findViewById(R.id.character)
         val cardView : MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
             //idView.setText((position+1).toString() + ".")
+            character.text = "Напряжение" + componentsInfo.component.character
             contentView.setText("Излучатель " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {

@@ -189,6 +189,7 @@ class MainFragment : Fragment() {
             requireContext(),
             UnityPlayerActivity::class.java
         )
+        clear()
         intent.putExtra(COMMAND_KEY,saberConfig)
         requireActivity().startActivity(intent)
     }

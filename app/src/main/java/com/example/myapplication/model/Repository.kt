@@ -31,7 +31,7 @@ class Repository {
         ),
         BatteryItem(
             Battery(
-                "B120-max",
+                "B120-min",
                 140.0
             ),
             R.drawable.but_small
@@ -62,34 +62,34 @@ class Repository {
         LightItem(
             Emitter(
                 "E-S",
-                350.0
+                100.0
             ),
             R.drawable.emitter_sss
         ),
         LightItem(
             Emitter(
-                "E1",
-                350.0
+                "E1-b",
+                120.0
             ),
             R.drawable.emitter_rose
         ),LightItem(
             Emitter(
                 "E6",
-                310.0
+                90.0
             ),
             R.drawable.emitter_brown
         ),
         LightItem(
             Emitter(
                 "E42",
-                200.0
+                180.0
             ),
             R.drawable.emitter_one_big
         ),
         LightItem(
             Emitter(
                 "E1",
-                350.0
+                230.0
             ),
             R.drawable.emitter_two
         ),
