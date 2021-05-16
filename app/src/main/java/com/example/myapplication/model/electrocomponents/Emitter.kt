@@ -8,7 +8,6 @@ data class Emitter(
     val range : IntRange,
     val color : Int
 ) : BaseComponent() {
-    val power = 0.0
     override val character: String = voltage.toString()
     override val type: NestType = NestType.EMITTER
 }

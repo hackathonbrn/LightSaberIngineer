@@ -72,8 +72,7 @@ class SaberAdapter(
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
-            idView.setText("Диапазон излучения: " + (componentsInfo.component as Emitter).range.toString())
-            //idView.setText((position+1).toString() + ".")
+            idView.setText("Диапазон: " + (componentsInfo.component as Emitter).range.toString())
             character.text = "Напряжение: " + componentsInfo.component.character
             contentView.setText("Излучатель " + componentsInfo.component.name)
             imageView.setImageResource(componentsInfo.imageResource)
