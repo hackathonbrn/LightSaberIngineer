@@ -8,6 +8,7 @@ data class Lens(
     val r2 : Double,
     val n : Double = 1.5
 ) : BaseComponent() {
+    override val character: String = ""
     override val type: NestType = NestType.EMITTER
 }
 

@@ -3,6 +3,7 @@ package com.example.myapplication.model
 import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.ColorUtils
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.BatteryItem
 import com.example.myapplication.componentsView.LensItem
@@ -36,7 +37,7 @@ class Repository {
         ),
         BatteryItem(
             Battery(
-                "B120-max",
+                "B120-min",
                 140.0
             ),
             R.drawable.but_small
@@ -66,7 +67,7 @@ class Repository {
                 "E12",
                 250.0,
                 480..510,
-                Color.rgb(1f, 0.5f, 0.2f)
+                Color.rgb(1f,0.5f,0.2f)
             ),
             R.drawable.emitter_lamp
         ),

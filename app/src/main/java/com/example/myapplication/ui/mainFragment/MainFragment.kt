@@ -61,10 +61,12 @@ class MainFragment : Fragment() {
                     )
                 }
             }
+
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
             )
         }
+        setHasOptionsMenu(true)
 
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener { bundle ->
@@ -232,7 +234,8 @@ class MainFragment : Fragment() {
             requireContext(),
             UnityPlayerActivity::class.java
         )
-        intent.putExtra(COMMAND_KEY, saberConfig)
+        clear()
+        intent.putExtra(COMMAND_KEY,saberConfig)
         requireActivity().startActivity(intent)
     }
 }

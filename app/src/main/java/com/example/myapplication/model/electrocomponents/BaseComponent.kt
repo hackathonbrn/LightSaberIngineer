@@ -5,6 +5,7 @@ import Connectable
 
 abstract class BaseComponent : Connectable, Conductive {
     abstract val name : String
+    abstract val character : String
     override fun research(i: Int): Int {
         return type.id
     }
