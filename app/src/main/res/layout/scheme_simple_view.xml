@@ -216,9 +216,9 @@
             android:scaleType="fitXY"
             android:id="@+id/lence"
             android:layout_marginEnd="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/addwithbackloooong"
+            android:layout_width="60dp"
+            android:layout_height="120dp"
+            android:background="@drawable/ic_addwithbackloooong"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
