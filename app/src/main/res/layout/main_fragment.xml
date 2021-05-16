@@ -57,7 +57,7 @@
         app:borderWidth="0dp"
         app:fabSize="mini"
         android:layout_marginEnd="6dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintEnd_toStartOf="@+id/run_but"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,9 +68,8 @@
         android:backgroundTint="@color/cust_green"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="4dp"
-
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/ic_baseline_play_circle_24"
         app:borderWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"

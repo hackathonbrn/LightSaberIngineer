@@ -12,6 +12,7 @@
 
     <color name="cust_green">#65E1D2</color>
     <color name="cust_fio">#B4C7EC</color>
+    <color name="cust_statebar">#1a3f52</color>
 
     <color name="light_grey">#F1F1F1</color>
     <color name="dark_grey">#000000</color>
