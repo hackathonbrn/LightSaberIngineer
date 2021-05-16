@@ -50,6 +50,7 @@ class SaberAdapter(
         when (values[position].viewType) {
             NestType.BATTERY -> (holder as ViewHolderBattery).onBind(values[position])
             NestType.EMITTER -> (holder as ViewHolderLight).onBind(values[position])
+            NestType.LENCE -> (holder as ViewHolderLens).onBind(values[position])
         }
     }
 
@@ -101,9 +102,9 @@ class SaberAdapter(
             val lens = componentsInfo.component as Lens
             title.setText(lens.name)
             contentView.setText(
-                "R1 = ${lens.r1}" +
-                        "R2 = ${lens.r2}" +
-                        "n = ${lens.n}"
+                "R1 = ${lens.r1}\n" +
+                        "R2 = ${lens.r2}\n" +
+                        "n = ${lens.n}\n"
             )
             imageView.setImageResource(componentsInfo.imageResource)
             cardView.setOnClickListener {

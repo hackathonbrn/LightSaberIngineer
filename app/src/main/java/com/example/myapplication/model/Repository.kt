@@ -123,7 +123,8 @@ class Repository {
             Lens(
                 "Линза |",
                 0.4,
-                0.7
+                0.7,
+                range = 1.86
             ),
             R.drawable.delete_forever_24
         ),
@@ -131,7 +132,8 @@ class Repository {
             Lens(
                 "Линза ||",
                 0.37,
-                0.7
+                0.7,
+                range = 1.56
             ),
             R.drawable.delete_forever_24
         ),
@@ -139,7 +141,8 @@ class Repository {
             Lens(
                 "Линза |||",
                 0.34,
-                0.7
+                0.7,
+                range = 1.32
             ),
             R.drawable.delete_forever_24
         ),
@@ -147,7 +150,8 @@ class Repository {
             Lens(
                 "Линза |X",
                 0.31,
-                0.7
+                0.7,
+                range = 1.11
             ),
             R.drawable.delete_forever_24
         ),
@@ -155,7 +159,8 @@ class Repository {
             Lens(
                 "Линза X",
                 0.28,
-                0.7
+                0.7,
+                range = 0.93
             ),
             R.drawable.delete_forever_24
         ),
@@ -163,7 +168,8 @@ class Repository {
             Lens(
                 "Линза X|",
                 0.25,
-                0.7
+                0.7,
+                range = 0.77
             ),
             R.drawable.delete_forever_24
         ),
