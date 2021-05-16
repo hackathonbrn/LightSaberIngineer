@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
@@ -199,6 +200,7 @@ class MainFragment : Fragment() {
         binding.needEmitter.isChecked = false
         binding.needLense.text = getString(R.string.lense)
         binding.needLense.isChecked = false
+        //binding.simpleSchemeView.battery.background = getDrawable(requireContext(), R.drawable.ic_baseline_battery_charging_full_24)
         viewModel.updateSaber {
             LaserSaber(null, null, null)
         }
