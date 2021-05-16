@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.commandnameexception.lasersaber"
         minSdkVersion 21
         targetSdkVersion 30
         ndk {
