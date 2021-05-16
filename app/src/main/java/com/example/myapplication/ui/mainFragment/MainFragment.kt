@@ -3,7 +3,9 @@ package com.example.myapplication.ui.mainFragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
@@ -163,15 +165,15 @@ class MainFragment : Fragment() {
     private fun initComponentObserver() {
         viewModel.saber.observe(viewLifecycleOwner) {
             if (it.battery == null) {
-                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.BATTERY)
+                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.BATTERY)
             }
 
             if (it.emitter == null) {
-                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.EMITTER)
+                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.EMITTER)
             }
 
             if (it.lens == null) {
-                binding.simpleSchemeView.setImage(R.id.ic_addwithback, NestType.LENCE)
+                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.LENCE)
             }
         }
     }
@@ -199,7 +201,17 @@ class MainFragment : Fragment() {
                 viewModel.invokeError(
                     ErrorScheme.LOW_BATTERY
                 )
-            } else return true
+                return false
+            }
+
+            if (!SaberValidator.chooseLenCorrect(saber!!)) {
+                viewModel.invokeError(
+                    ErrorScheme.BAD_LENC
+                )
+                return false
+            }
+
+            return true
         }
         return false
     }
