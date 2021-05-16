@@ -27,6 +27,7 @@ import com.example.myapplication.schemeerrors.ErrorScheme
 import com.example.myapplication.ui.ItemFragment.RESULT_COMPONENT_KEY
 import com.unity3d.player.COMMAND_KEY
 import com.unity3d.player.UnityPlayerActivity
+import org.koin.android.ext.android.bind
 
 class MainFragment : Fragment() {
 
@@ -42,7 +43,17 @@ class MainFragment : Fragment() {
         binding.needBattery.text = getString(R.string.battery)
         binding.needEmitter.text = getString(R.string.emitter)
         binding.needLense.text = getString(R.string.lense)
-        setHasOptionsMenu(true)
+        binding.cleanBut.setOnClickListener {
+            clear()
+        }
+        binding.runBut.setOnClickListener {
+            if (validateLaserSaber()) {
+                val color = (viewModel.emitterNestLive.value?.component as Emitter).color
+                val str = "${color.red},${color.green},${color.blue}"
+                Log.d("COLOR", str)
+                toUnity(str)
+            }
+        }
 
         initNestListeners()
         initObservers()
@@ -160,28 +171,6 @@ class MainFragment : Fragment() {
         setFragmentResultListener(RESULT_COMPONENT_KEY) { requestKey, mybundle ->
             function.invoke(mybundle)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.build_appbar, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.clean -> {
-                clear()
-            }
-            R.id.play -> {
-                if (validateLaserSaber()) {
-                    val color = (viewModel.emitterNestLive.value?.component as Emitter).color
-                    val str = "${color.red},${color.green},${color.blue}"
-                    Log.d("COLOR", str)
-                    toUnity(str)
-                }
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     fun clear() {
