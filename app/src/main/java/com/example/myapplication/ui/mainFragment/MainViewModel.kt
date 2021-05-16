@@ -3,6 +3,7 @@ package com.example.myapplication.ui.mainFragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.componentsView.BatteryItem
+import com.example.myapplication.componentsView.LensItem
 import com.example.myapplication.componentsView.LightItem
 import com.example.myapplication.model.electrocomponents.Emitter
 import com.example.myapplication.model.electrocomponents.LaserSaber
@@ -12,6 +13,7 @@ class MainViewModel : ViewModel() {
 
     val emitterNestLive : MutableLiveData<LightItem> = MutableLiveData(null)
     val batteryNestLive : MutableLiveData<BatteryItem> = MutableLiveData(null)
+    val lensNestLive : MutableLiveData<LensItem> = MutableLiveData(null)
 
     var errorsLive : MutableLiveData<ErrorScheme?> = MutableLiveData(null)
 
