@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 
@@ -39,6 +40,9 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
             text = "Назад"
             setOnClickListener {
                 finish()
+//            val command: String? = intent?.getStringExtra(COMMAND_KEY)
+//            UnityPlayer.UnitySendMessage("LobbyManager", "SetSwordParameters", command)
+
             }
             gravity = Gravity.START
             layoutParams = ViewGroup.LayoutParams(
@@ -51,6 +55,7 @@ class UnityPlayerActivity : Activity(), IUnityPlayerLifecycleEvents {
         mUnityPlayer!!.requestFocus()
 
         val command: String? = intent?.getStringExtra(COMMAND_KEY)
+        Log.d("ARGS", command.toString())
         command?.let {
             UnityPlayer.UnitySendMessage("LobbyManager", "SetSwordParameters", command)
         }

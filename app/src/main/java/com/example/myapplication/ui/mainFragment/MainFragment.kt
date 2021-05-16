@@ -3,8 +3,12 @@ package com.example.myapplication.ui.mainFragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResultListener
@@ -38,11 +42,21 @@ class MainFragment : Fragment() {
         binding.needBattery.text = getString(R.string.battery)
         binding.needEmitter.text = getString(R.string.emitter)
         binding.needLense.text = getString(R.string.lense)
+        setHasOptionsMenu(true)
+
+        initNestListeners()
+        initObservers()
+        return binding.root
+    }
+
+    private fun initNestListeners() {
         binding.simpleSchemeView.setOnBatteryClickListener {
-            setResultListener() { bundle ->
+            setResultListener { bundle ->
+                val batteryItem = (bundle.get(NestType.BATTERY.name) as BatteryItem)
+                viewModel.batteryNestLive.value = batteryItem
                 viewModel.updateSaber {
                     it.copy(
-                        battery = (bundle.get(NestType.BATTERY.name) as BatteryItem).component as Battery
+                        battery = batteryItem.component as Battery
                     )
                 }
             }
@@ -54,27 +68,36 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.simpleSchemeView.setOnLightClickListener {
-            setResultListener() { bundle ->
-
-                val ugo = (bundle.get(NestType.EMITTER.name) as LightItem)
+            setResultListener { bundle ->
+                val lightItem = (bundle.get(NestType.EMITTER.name) as LightItem)
+                viewModel.emitterNestLive.value = lightItem
                 viewModel.updateSaber {
                     it.copy(
-                        emitter = ugo.component as Emitter
+                        emitter = lightItem.component as Emitter
                     )
                 }
-                binding.simpleSchemeView.setImage(ugo.imageResource, NestType.EMITTER)
             }
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
             )
         }
-        initObservers()
-        return binding.root
     }
 
     private fun initObservers() {
         initErrorObserver()
         initComponentObserver()
+        initobserveNest()
+    }
+
+    private fun initobserveNest() {
+        viewModel.emitterNestLive.observe(viewLifecycleOwner) {
+            if (it != null)
+                binding.simpleSchemeView.setImage(it.imageResource, NestType.EMITTER)
+        }
+        viewModel.batteryNestLive.observe(viewLifecycleOwner) {
+            if (it != null)
+                binding.simpleSchemeView.setImage(it.imageResource, NestType.BATTERY)
+        }
     }
 
     private fun initErrorObserver() {
@@ -150,8 +173,12 @@ class MainFragment : Fragment() {
                 clear()
             }
             R.id.play -> {
-                if (validateLaserSaber())
-                    toUnity("")
+                if (validateLaserSaber()) {
+                    val color = (viewModel.emitterNestLive.value?.component as Emitter).color
+                    val str = "${color.red},${color.green},${color.blue}"
+                    Log.d("COLOR", str)
+                    toUnity(str)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -184,7 +211,7 @@ class MainFragment : Fragment() {
         return false
     }
 
-    fun toUnity(saberConfig : String?) {
+    fun toUnity(saberConfig: String?) {
         val intent = Intent(
             requireContext(),
             UnityPlayerActivity::class.java

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.componentsView.ComponentsInfo
 import com.example.myapplication.componentsView.NestType
+import com.example.myapplication.model.electrocomponents.Emitter
 import com.google.android.material.card.MaterialCardView
 
 class SaberAdapter(
@@ -49,7 +50,7 @@ class SaberAdapter(
 
     inner class ViewHolderBattery(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
-        val cardView : MaterialCardView = view.findViewById(R.id.card)
+        val cardView: MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
@@ -66,11 +67,13 @@ class SaberAdapter(
 
     inner class ViewHolderLight(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
+        val cardView: MaterialCardView = view.findViewById(R.id.card)
         val character: TextView = view.findViewById(R.id.character)
         val cardView : MaterialCardView = view.findViewById(R.id.card)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.image)
         fun onBind(componentsInfo: ComponentsInfo) {
+            idView.setText("Диапазон излучения: " + (componentsInfo.component as Emitter).range.toString())
             //idView.setText((position+1).toString() + ".")
             character.text = "Напряжение" + componentsInfo.component.character
             contentView.setText("Излучатель " + componentsInfo.component.name)

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -26,7 +26,7 @@ class ItemFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
         if (view is RecyclerView) {
-            view.layoutManager = LinearLayoutManager(context)
+            view.layoutManager = GridLayoutManager(context, 2)
             view.adapter =
                 SaberAdapter(viewModel.loadItems(args.nestedType)) { bundle: Bundle ->
                     setFragmentResult(RESULT_COMPONENT_KEY, bundle)
