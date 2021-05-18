@@ -36,6 +36,10 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: MainFragmentBinding
+/*    override fun onResume() {
+        super.onResume()
+        findNavController().popBackStack(R.id.splashFragment, true)
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,13 +77,10 @@ class MainFragment : Fragment() {
                     )
                 }
             }
-
             findNavController().navigate(
                 MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
             )
         }
-        //setHasOptionsMenu(true)
-
         binding.simpleSchemeView.setOnLightClickListener {
             setResultListener { bundle ->
                 val lightItem = (bundle.get(NestType.EMITTER.name) as LightItem)
