@@ -27,7 +27,7 @@ import com.commandnameexception.lasersaber.model.electrocomponents.Lens
 import com.commandnameexception.lasersaber.saberUtils.SaberValidator
 import com.commandnameexception.lasersaber.schemeerrors.ErrorScheme
 import com.commandnameexception.lasersaber.ui.ItemFragment.RESULT_COMPONENT_KEY
-import com.unity3d.player.COMMAND_KEY
+//import com.unity3d.player.COMMAND_KEY
 import com.unity3d.player.UnityPlayerActivity
 import org.koin.android.ext.android.bind
 
@@ -43,191 +43,192 @@ class MainFragment : Fragment() {
     ): View {
         binding = MainFragmentBinding.inflate(inflater)
         binding.cleanBut.setOnClickListener {
-            clear()
+//            clear()
         }
-        binding.runBut.setOnClickListener {
-            if (validateLaserSaber()) {
-                val color = (viewModel.emitterNestLive.value?.component as Emitter).color
-                val range = ((viewModel.lensNestLive.value?.component as Lens).range * 100).toInt()
-                    .toString()
-                val str = "${color.red},${color.green},${color.blue},$range"
-                toUnity(str)
-            }
-        }
-        binding.manualBut.setOnClickListener {
-            toManual("file:///android_asset/tableOfContent.html")
-        }
-        initNestListeners()
-        initObservers()
+        toUnity(saberConfig = "123,42,12,1.4")
+//        binding.runBut.setOnClickListener {
+//            if (validateLaserSaber()) {
+//                val color = (viewModel.emitterNestLive.value?.component as Emitter).color
+//                val range = ((viewModel.lensNestLive.value?.component as Lens).range * 100).toInt()
+//                    .toString()
+//                val str = "${color.red},${color.green},${color.blue},$range"
+//                toUnity(str)
+//            }
+//        }
+//        binding.manualBut.setOnClickListener {
+//            toManual("file:///android_asset/tableOfContent.html")
+//        }
+//        initNestListeners()
+//        initObservers()
         return binding.root
     }
 
-    private fun initNestListeners() {
-        binding.simpleSchemeView.setOnBatteryClickListener {
-            setResultListener { bundle ->
-                val batteryItem = (bundle.get(NestType.BATTERY.name) as BatteryItem)
-                viewModel.batteryNestLive.value = batteryItem
-                viewModel.updateSaber {
-                    it.copy(
-                        battery = batteryItem.component as Battery
-                    )
-                }
-            }
+//    private fun initNestListeners() {
+//        binding.simpleSchemeView.setOnBatteryClickListener {
+//            setResultListener { bundle ->
+//                val batteryItem = (bundle.get(NestType.BATTERY.name) as BatteryItem)
+//                viewModel.batteryNestLive.value = batteryItem
+//                viewModel.updateSaber {
+//                    it.copy(
+//                        battery = batteryItem.component as Battery
+//                    )
+//                }
+//            }
+//
+//            findNavController().navigate(
+//                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
+//            )
+//        }
+//        //setHasOptionsMenu(true)
+//
+//        binding.simpleSchemeView.setOnLightClickListener {
+//            setResultListener { bundle ->
+//                val lightItem = (bundle.get(NestType.EMITTER.name) as LightItem)
+//                viewModel.emitterNestLive.value = lightItem
+//                viewModel.updateSaber {
+//                    it.copy(
+//                        emitter = lightItem.component as Emitter
+//                    )
+//                }
+//            }
+//            findNavController().navigate(
+//                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
+//            )
+//        }
+//        binding.simpleSchemeView.setOnLensClickListener {
+//            setResultListener { bundle ->
+//                val lensItem = (bundle.get(NestType.LENCE.name) as LensItem)
+//                viewModel.lensNestLive.value = lensItem
+//                viewModel.updateSaber {
+//                    it.copy(
+//                        lens = lensItem.component as Lens
+//                    )
+//                }
+//            }
+//            findNavController().navigate(
+//                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.LENCE)
+//            )
+//        }
+//    }
 
-            findNavController().navigate(
-                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.BATTERY)
-            )
-        }
-        //setHasOptionsMenu(true)
+//    private fun initObservers() {
+//        initErrorObserver()
+//        initComponentObserver()
+//        initObserveNests()
+//    }
+//
+//    private fun initObserveNests() {
+//        viewModel.emitterNestLive.observe(viewLifecycleOwner) {
+//            if (it != null)
+//                binding.simpleSchemeView.setImage(it.imageResource, NestType.EMITTER)
+//        }
+//        viewModel.batteryNestLive.observe(viewLifecycleOwner) {
+//            if (it != null)
+//                binding.simpleSchemeView.setImage(it.imageResource, NestType.BATTERY)
+//        }
+//        viewModel.lensNestLive.observe(viewLifecycleOwner) {
+//            if (it != null)
+//                binding.simpleSchemeView.setImage(it.imageResource, NestType.LENCE)
+//        }
+//    }
 
-        binding.simpleSchemeView.setOnLightClickListener {
-            setResultListener { bundle ->
-                val lightItem = (bundle.get(NestType.EMITTER.name) as LightItem)
-                viewModel.emitterNestLive.value = lightItem
-                viewModel.updateSaber {
-                    it.copy(
-                        emitter = lightItem.component as Emitter
-                    )
-                }
-            }
-            findNavController().navigate(
-                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.EMITTER)
-            )
-        }
-        binding.simpleSchemeView.setOnLensClickListener {
-            setResultListener { bundle ->
-                val lensItem = (bundle.get(NestType.LENCE.name) as LensItem)
-                viewModel.lensNestLive.value = lensItem
-                viewModel.updateSaber {
-                    it.copy(
-                        lens = lensItem.component as Lens
-                    )
-                }
-            }
-            findNavController().navigate(
-                MainFragmentDirections.actionMainFragmentToItemFragment(NestType.LENCE)
-            )
-        }
-    }
+//    private fun initErrorObserver() {
+//        viewModel.errorsLive.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//                createSupportDialog(it)
+//            }
+//        }
+//    }
 
-    private fun initObservers() {
-        initErrorObserver()
-        initComponentObserver()
-        initObserveNests()
-    }
+//    private fun createSupportDialog(it: ErrorScheme) {
+//        AlertDialog.Builder(requireContext())
+//            .setPositiveButton(
+//                "Ok"
+//            ) { dialog, which ->
+//                viewModel.errorResolved()
+//            }
+//            .setNegativeButton(
+//                "Справка"
+//            ) { dialog, which ->
+//                viewModel.errorResolved()
+//                toManual(it.MANUAL_URL)
+//            }
+//            .setTitle(it.title)
+//            .setMessage(it.description)
+//            .create()
+//            .show()
+//    }
 
-    private fun initObserveNests() {
-        viewModel.emitterNestLive.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.simpleSchemeView.setImage(it.imageResource, NestType.EMITTER)
-        }
-        viewModel.batteryNestLive.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.simpleSchemeView.setImage(it.imageResource, NestType.BATTERY)
-        }
-        viewModel.lensNestLive.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.simpleSchemeView.setImage(it.imageResource, NestType.LENCE)
-        }
-    }
+//    private fun toManual(manualUrl: String) {
+//        findNavController()
+//            .navigate(
+//                MainFragmentDirections.actionMainFragmentToWebViewFragment(manualUrl)
+//            )
+//    }
 
-    private fun initErrorObserver() {
-        viewModel.errorsLive.observe(viewLifecycleOwner) {
-            if (it != null) {
-                createSupportDialog(it)
-            }
-        }
-    }
+//    private fun initComponentObserver() {
+//        viewModel.saber.observe(viewLifecycleOwner) {
+//            if (it.battery == null) {
+//                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.BATTERY)
+//            }
+//
+//            if (it.emitter == null) {
+//                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.EMITTER)
+//            }
+//
+//            if (it.lens == null) {
+//                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.LENCE)
+//            }
+//        }
+//    }
 
-    private fun createSupportDialog(it: ErrorScheme) {
-        AlertDialog.Builder(requireContext())
-            .setPositiveButton(
-                "Ok"
-            ) { dialog, which ->
-                viewModel.errorResolved()
-            }
-            .setNegativeButton(
-                "Справка"
-            ) { dialog, which ->
-                viewModel.errorResolved()
-                toManual(it.MANUAL_URL)
-            }
-            .setTitle(it.title)
-            .setMessage(it.description)
-            .create()
-            .show()
-    }
+//    private fun setResultListener(function: (bundle: Bundle) -> Unit) {
+//        clearFragmentResultListener(RESULT_COMPONENT_KEY)
+//        setFragmentResultListener(RESULT_COMPONENT_KEY) { requestKey, mybundle ->
+//            function.invoke(mybundle)
+//        }
+//    }
+//
+//    fun clear() {
+//        viewModel.updateSaber {
+//            LaserSaber(null, null, null)
+//        }
+//        viewModel.batteryNestLive.value = null
+//        viewModel.emitterNestLive.value = null
+//        viewModel.lensNestLive.value = null
+//    }
 
-    private fun toManual(manualUrl: String) {
-        findNavController()
-            .navigate(
-                MainFragmentDirections.actionMainFragmentToWebViewFragment(manualUrl)
-            )
-    }
-
-    private fun initComponentObserver() {
-        viewModel.saber.observe(viewLifecycleOwner) {
-            if (it.battery == null) {
-                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.BATTERY)
-            }
-
-            if (it.emitter == null) {
-                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.EMITTER)
-            }
-
-            if (it.lens == null) {
-                binding.simpleSchemeView.setImage(R.drawable.ic_addwithback, NestType.LENCE)
-            }
-        }
-    }
-
-    private fun setResultListener(function: (bundle: Bundle) -> Unit) {
-        clearFragmentResultListener(RESULT_COMPONENT_KEY)
-        setFragmentResultListener(RESULT_COMPONENT_KEY) { requestKey, mybundle ->
-            function.invoke(mybundle)
-        }
-    }
-
-    fun clear() {
-        viewModel.updateSaber {
-            LaserSaber(null, null, null)
-        }
-        viewModel.batteryNestLive.value = null
-        viewModel.emitterNestLive.value = null
-        viewModel.lensNestLive.value = null
-    }
-
-    fun validateLaserSaber(): Boolean {
-        val saber = viewModel.saber.value
-        if (!SaberValidator.allComponentsOnPlace(saber))
-            viewModel.invokeError(
-                ErrorScheme.BUILD
-            ) else {
-            if (!SaberValidator.hasEnergyToStart(saber!!)) {
-                viewModel.invokeError(
-                    ErrorScheme.LOW_BATTERY
-                )
-                return false
-            }
-
-            if (!SaberValidator.chooseLenCorrect(saber!!)) {
-                viewModel.invokeError(
-                    ErrorScheme.BAD_LENS
-                )
-                return false
-            }
-
-            return true
-        }
-        return false
-    }
+//    fun validateLaserSaber(): Boolean {
+//        val saber = viewModel.saber.value
+//        if (!SaberValidator.allComponentsOnPlace(saber))
+//            viewModel.invokeError(
+//                ErrorScheme.BUILD
+//            ) else {
+//            if (!SaberValidator.hasEnergyToStart(saber!!)) {
+//                viewModel.invokeError(
+//                    ErrorScheme.LOW_BATTERY
+//                )
+//                return false
+//            }
+//
+//            if (!SaberValidator.chooseLenCorrect(saber!!)) {
+//                viewModel.invokeError(
+//                    ErrorScheme.BAD_LENS
+//                )
+//                return false
+//            }
+//
+//            return true
+//        }
+//        return false
+//    }
 
     fun toUnity(saberConfig: String?) {
         val intent = Intent(
             requireContext(),
             UnityPlayerActivity::class.java
         )
-        intent.putExtra(COMMAND_KEY, saberConfig)
+//        intent.putExtra(COMMAND_KEY, saberConfig)
         requireActivity().startActivity(intent)
     }
 }
